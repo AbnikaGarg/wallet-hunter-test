@@ -67,4 +67,28 @@ class BottomBarController extends GetxController {
       {"name": "Community Temple", "location": "City Center"},
     ],
   };
+   void deleteMemberAtIndex(int index) {
+    final storedData = PreferenceUtils.getString("headData");
+
+    if (storedData != null) {
+      final Map<String, dynamic> jsonData = json.decode(storedData);
+
+      List<dynamic> members = jsonData['members'] ?? [];
+
+      if (index >= 0 && index < members.length) {
+        members.removeAt(index);
+        jsonData['members'] = members;
+
+        // Save updated data back
+        PreferenceUtils.setString("headData", json.encode(jsonData));
+        familyMember = jsonData;
+        update();
+        print(" Member at index $index deleted successfully.");
+      } else {
+        print("Invalid index: $index");
+      }
+    } else {
+      print(" No headData found in SharedPreferences.");
+    }
+  }
 }

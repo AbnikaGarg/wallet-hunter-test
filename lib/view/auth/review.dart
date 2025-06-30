@@ -391,7 +391,17 @@ class ReviewPage extends StatelessWidget {
                                 ),
                               );
                             },
+                          ) else
+                      Center(
+                        child: Text(
+                          "No Family Member",
+                          style: GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: AppTheme.blackColor,
                           ),
+                        ),
+                      ),
                       ],
                     ),
                   ),
